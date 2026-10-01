@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donut Berry Callebaut — Coklat Premium & Buah Segar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        :root {
+            --coklat-tua: #5D2906;
+            --coklat: #8B4513;
+            --coklat-muda: #A0522D;
+            --krem: #FFF8F0;
+            --stroberi: #E6395A;
+            --biru-buah: #1E3A8A;
+            --emas: #D4AF37;
+            --putih: #FFFFFF;
+            --abu-lembut: #F5F5F5;
+            --gelap: #2D2D2D;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(180deg, #FFF8F0 0%, #FFEDE0 50%, #FFE8D0 100%);
+            color: var(--gelap);
+            line-height: 1.6;
+            padding-top: 20px; /* Jarak agar konten tidak tertutup header */
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; }
+        .container { width: min(1200px, 92%); margin: 0 auto; }
+
+        /* NAVBAR — TETAP DI ATAS SAAT SCROLL */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 14px 0;
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(93, 41, 6, 0.08);
+            z-index: 9999; /* Selalu di paling atas */
+        }
+        .navbar-inner {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--stroberi) 20%, var(--coklat) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }        
+        
+        .logo i { 
+            font-size: 18px; 
+            color: var(--emas);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .nav-links a {
+            position: relative;
+            border: 2px solid var(--coklat);
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--coklat);
+            color: white;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--coklat) 0%, var(--coklat-muda) 100%);
+            color: white; padding: 10px 22px; border-radius: 50px;
+            font-weight: 600; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        .btn-secondary {
+            border: 2px solid var(--coklat);
+            color: var(--coklat);
+            background: transparent;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .btn-secondary:hover {
+            background: var(--coklat);
+            color: white;
+        }
+
+        /* HERO */
+        .hero {
+            padding-top: 20px;
+            min-height: 100vh;
+            display: flex; align-items: center; overflow: hidden;
+        }
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+        }
+        .hero-content h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.2; margin-bottom: 24px;
+        }
+        .hero-content h1 span {
+            background: linear-gradient(135deg, var(--stroberi) 0%, var(--emas) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-content p { font-size: 16px; color: #666; margin-bottom: 28px; max-width: 460px; }
+        .hero-price {
+            display: inline-block;
+            background: rgba(230, 57, 90, 0.1);
+            color: var(--stroberi);
+            padding: 8px 20px; border-radius: 50px;
+            font-weight: 800; font-size: 18px; margin-bottom: 24px;
+        }
+        .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero-img {
+            border-radius: 24px; height: 480px; object-fit: cover;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.15);
+        }
+
+        /* SECTION */
+        .section { padding: 20px 0; }
+        .section-head { text-align: center; margin-bottom: 45px; }
+        .section-label {
+            display: inline-block;
+            background: rgba(230, 57, 90, 0.1);
+            color: var(--stroberi);
+            font-weight: 700; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 2px;
+            padding: 6px 16px; border-radius: 50px; margin-bottom: 10px;
+        }
+        .section-title { font-family: "Playfair Display", serif; font-size: clamp(26px, 5vw, 40px); }
+        .section-title span { color: var(--stroberi); }
+
+        /* MENU */
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .menu-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.08); transition: transform 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); }
+        .menu-card-img {
+            height: 240px; overflow: hidden; position: relative;
+            background: var(--abu-lembut);
+        }
+        .menu-card-img img { height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .menu-card:hover img { transform: scale(1.05); }
+        .menu-tag {
+            position: absolute; top: 12px; left: 12px;
+            background: var(--stroberi); color: white;
+            padding: 4px 12px; border-radius: 50px;
+            font-size: 11px; font-weight: 700;
+        }
+        .menu-card-body { padding: 20px; }
+        .menu-card-body h3 { font-size: 18px; margin-bottom: 6px; }
+        .menu-card-body p { font-size: 13px; color: #777; margin-bottom: 14px; }
+        .menu-card-foot { display: flex; justify-content: space-between; align-items: center; }
+        .menu-price { font-size: 20px; font-weight: 800; color: var(--coklat); }
+        .order-btn {
+            background: var(--coklat); color: white;
+            padding: 8px 18px; border-radius: 50px;
+            font-size: 13px; font-weight: 600;
+        }
+
+        /* GALERI */
+        .galeri-bg { background: rgba(255,255,255,0.6); border-radius: 24px; padding: 30px 20px; }
+        .galeri-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .galeri-item { border-radius: 12px; overflow: hidden; aspect-ratio: 1; }
+        .galeri-item.lg { grid-column: span 2; grid-row: span 2; }
+        .galeri-item img { height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .galeri-item:hover img { transform: scale(1.05); }
+
+        /* TENTANG */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding-top: 0; }
+        .about-img { border-radius: 20px; height: 400px; object-fit: cover; box-shadow: 0 12px 30px rgba(139, 69, 19, 0.15); }
+        .about-text p { color: #666; margin-bottom: 16px; line-height: 1.8; }
+        .feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .feature-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: white; border-radius: 12px; }
+        .feature-icon {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--coklat); color: white; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0;
+        }
+
+        /* LOKASI & KONTAK */
+        .lokasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .map-box { border-radius: 16px; overflow: hidden; height: 320px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+        .map-box iframe { width: 100%; height: 100%; border: none; }
+        .map-link { display: block; text-align: center; margin-top: 10px; color: var(--coklat); font-weight: 600; }
+        .kontak-card { background: white; border-radius: 20px; padding: 24px; box-shadow: 0 6px 20px rgba(139, 69, 19, 0.08); }
+        .kontak-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+        .kontak-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--coklat); color: white; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .kontak-text h4 { font-size: 14px; margin-bottom: 4px; }
+        .kontak-text p, .kontak-text a { font-size: 13px; color: #666; }
+        .btn-wa {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            background: #25D366; color: white !important; padding: 12px;
+            border-radius: 50px; font-weight: 700; margin-top: 8px;
+        }
+        .btn-wa:hover { background: #1DA855; }
+
+        /* FOOTER */
+        footer {
+            background: var(--gelap); color: white; padding: 50px 0 20px; border-radius: 24px 24px 0 0;
+            margin-top: 30px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 24px; }
+        .footer-col h3 { font-size: 16px; margin-bottom: 12px; color: var(--stroberi); }
+        .footer-col p { font-size: 13px; color: #999; line-height: 1.8; }
+        .copyright { border-top: 1px solid #444; padding-top: 16px; text-align: center; font-size: 12px; color: #666; }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .hero-inner, .about-grid, .lokasi-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .galeri-grid { grid-template-columns: repeat(2, 1fr); }
+            .galeri-item.lg { grid-column: span 1; grid-row: span 1; }
+            body { padding-top: 70px; }
+        }
+        @media(max-width: 576px) {
+            .nav-links { display: none; }
+            .menu-grid, .galeri-grid, .footer-grid { grid-template-columns: 1fr; }
+            body { padding-top: 65px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="container navbar-inner">
+        <a href="#home" class="logo">
+            <i class="fas fa-chocolate-bar"></i>
+            AyraaBerries
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#galeri">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#lokasi">Location & Contact</a>
+        </div>
+        <a href="https://wa.me/6283191024707" class="btn-primary">
+            <i class="fab fa-whatsapp"></i> Order Now
+        </a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <h1>Donut Berry Callebaut<br><span>Callebaut Chocolate & Fresh Berries</span></h1>
+            <div class="hero-price">2 pcs hanya Rp 35.000</div>
+            <p>Donat dengan coklat Callebaut dan coklat putih premium, topping strawberry, blueberry, serta sentuhan buah segar pilihan lainnya.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/6283191024707" target="_blank" class="btn-primary">Pesan Sekarang</a>
+                <a href="javascript:void(0)" class="btn-secondary">⭐ 4.9/5</a>
+            </div>
+        </div>
+        <div>
+            <img src="fotoutama.jpeg" alt="Donut Berry Callebaut" class="hero-img">
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="section" id="menu">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Pilihan <span>Favorit</span></h2>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-card-img">
+                    <img src="fotomenu1.jpeg" alt="Donut Berry Callebaut">
+                </div>
+                <div class="menu-card-body">
+                    <h3>Donut Berry Callebaut</h3>
+                    <p>Donat lembut dengan coklat Callebaut premium dan topping buah segar.</p>
+                    <div class="menu-card-foot">
+                        <span class="menu-price">Rp 20.000</span>
+                        <a href="https://wa.me/6283191024707?text=Saya%20pesan%201%20Donut%20Berry%20Callebaut%20" class="order-btn">Pesan</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img">
+                    <img src="fotomenu2.jpeg" alt="Paket 2 pcs">
+                </div>
+                <div class="menu-card-body">
+                    <h3>Paket 2 pcs</h3>
+                    <p>Dapatkan 2 Donut Berry Callebaut dengan harga spesial, cocok bareng teman.</p>
+                    <div class="menu-card-foot">
+                        <span class="menu-price">Rp 35.000</span>
+                        <a href="https://wa.me/6283191024707?text=Saya%20pesan%20Paket%202%20pcs%20Donut%20Berry%20Callebaut%20" class="order-btn">Pesan</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img">
+                    <img src="fotomenu3.jpeg" alt="Donut Custom">
+                </div>
+                <div class="menu-card-body">
+                    <h3>Donut Custom</h3>
+                    <p>Pesan donat dengan topping sesuai selera untuk acara spesialmu.</p>
+                    <div class="menu-card-foot">
+                        <span class="menu-price">Custom</span>
+                        <a href="https://wa.me/6283191024707?text=Saya%20ingin%20pesan%20Donut%20Custom" class="order-btn">Tanya Harga</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALERI -->
+<section class="section" id="galeri">
+    <div class="container galeri-bg">
+        <div class="section-head">
+            <h2 class="section-title">Koleksi <span>Foto</span></h2>
+        </div>
+
+        <div class="galeri-grid">
+            <div class="galeri-item lg"><img src="galeri7.jpeg" alt="galeri7"></div>
+            <div class="galeri-item"><img src="galeri2.jpeg" alt="galeri2"></div>
+            <div class="galeri-item"><img src="galeri3.jpeg" alt="galeri3"></div>
+            <div class="galeri-item"><img src="galeri4.jpeg" alt="galeri4"></div>
+            <div class="galeri-item"><img src="galeri5.jpeg" alt="galeri5"></div>
+            <div class="galeri-item"><img src="galeri6.jpeg" alt="galeri6"></div>
+            <div class="galeri-item"><img src="galeri1.jpeg" alt="galeri1"></div>
+            <div class="galeri-item"><img src="galeri8.jpeg" alt="galeri8"></div>
+            <div class="galeri-item"><img src="galeri9.jpeg" alt="galeri9"></div>
+        </div>
+    </div>
+</section>
+
+<!-- TENTANG -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-head">
+            <h2 style="font-size: clamp(28px, 5vw, 44px); line-height: 1.3; font-weight: 800; 
+  font-family: 'Playfair Display', serif; letter-spacing: 1px;"> 
+  <span style="color: #8B4513; font-style: italic;">Coklat Premium,</span><br>
+  <span style="color: #E6395A; font-weight: 800;">Buah Segar,</span><br>
+  <span style="color: #B8524C; font-variant: small-caps;">Rasa yang Berbeda</span>
+</h2>
+        </div>
+
+        <div style="max-width: 100%; padding: 0 20px;">
+            <p style="text-align: justify; font-size: 18px; color: #555; margin-bottom: 16px; line-height: 1.8;">
+                AyraaBerries menghadirkan donat dengan coklat Callebaut dan coklat putih berkualitas, lalu diberi topping strawberry, blueberry, dan buah segar lainnya yang dipilih dengan teliti.
+            </p>
+            <p style="text-align: justify; font-size: 18px; color: #555; margin-bottom: 24px; line-height: 1.8;">
+                Ayraaberries ingin menyajikan camilan manis yang tidak hanya enak, tapi juga terlihat cantik dan cocok untuk berbagai momen spesial.
+            </p>
+
+            <div class="feature-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <span>Buah segar pilihan</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <span>Coklat Callebaut premium</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <span>Dibuat segar setiap hari</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <span>Dibuat dengan cinta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LOKASI & KONTAK -->
+<section class="section galeri-bg" id="lokasi">
+    <div class="container">
+        <div class="section-head">
+            <h2 class="section-title">Datang Langsung <span>&</span> Pesan</h2>
+        </div>
+
+        <div class="lokasi-grid">
+            <div>
+                <div class="map-box">
+                    <iframe 
+                        src="https://www.google.com/maps?q=Gg.%20Anda%20No.4,%20Ps.%20Merah%20Tim.,%20Kec.%20Medan%20Area,%20Kota%20Medan&output=embed" 
+                        width="100%" 
+                        height="320" 
+                        style="border:0;" 
+                        allowfullscreen 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Gg.Anda+No.4,Ps.Merah+Timur,Kec.Medan+Area,Kota+Medan" class="map-link">
+                    <i class="fas fa-map-marker-alt"></i> Buka di Google Maps
+                </a>
+            </div>
+
+            <div class="kontak-card">
+                <div class="kontak-item">
+                    <div class="kontak-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="kontak-text">
+                        <h4>Alamat</h4>
+                        <p>Jalan HM. Joni Gang Anda No. 04<br>Medan, Sumatera Utara</p>
+                    </div>
+                </div>
+
+                <div class="kontak-item">
+                    <div class="kontak-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="kontak-text">
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/6283191024707" >0831-9102-4707 — Klik untuk pesan</a>
+                    </div>
+                </div>
+
+                <div class="kontak-item">
+                    <div class="kontak-icon"><i class="fas fa-clock"></i></div>
+                    <div class="kontak-text">
+                        <h4>Jam Operasional</h4>
+                        <p>Senin – Jumat: 10.00 – 17.00 WIB</p>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/6283191024707" class="btn-wa">
+                    <i class="fab fa-whatsapp"></i> Pesan via WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>🍫 AyraaBerries</h3>
+                <p>Donat lembut dengan coklat premium serta topping buah segar. Camilan manis yang terlihat cantik dan terasa spesial.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>📞 WhatsApp: 0831-9102-4707<br>📍 Medan, Sumatera Utara</p>
+            </div>
+        </div>
+        <p class="copyright">© 2026 AyraaBerries — Dibuat dengan 💖 di Medan</p>
+    </div>
+</footer>
+
+</body>
+</html>
